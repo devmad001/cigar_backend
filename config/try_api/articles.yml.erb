@@ -1,0 +1,144 @@
+title: 'Articles'
+methods:
+ -
+   title: 'Articles list'
+   path: '/articles'
+   method: 'get'
+   headers:
+     -
+       name: 'Session-Token'
+   parameters:
+     -
+       name: 'page'
+       type: 'integer'
+       description: var:default_page
+     -
+       name: 'per_page'
+       type: 'integer'
+       description: var:default_per_page
+     -
+       name: 'sort_column'
+       type: 'string'
+       description: >
+        Default created_at. [ title  | body | views | last_day_views | last_week_views | last_month_views | created_at | updated_at ]
+     -
+       name: 'sort_type'
+       type: 'string'
+       description: 'Default desc. [ asc | desc ]'
+     -
+       name: 'title'
+       type: 'string'
+     -
+       name: 'body'
+       type: 'string'
+     -
+       name: 'article_type'
+       type: 'string'
+       description: '[ <%= Article.article_types.keys.join ' | ' %> ]'
+     -
+       name: 'created_at_from'
+       type: 'datetime'
+       description: var:example_datetime
+     -
+       name: 'created_at_to'
+       type: 'datetime'
+       description: var:example_datetime
+     -
+       name: 'updated_at_from'
+       type: 'datetime'
+       description: var:example_datetime
+     -
+       name: 'updated_at_to'
+       type: 'datetime'
+       description: var:example_datetime
+   example_responses:
+     -
+       code: 200
+       response: >
+        {
+          "articles": [
+            {
+              "id": 1,
+              "title": "Test",
+              "body": "Test **bols** *italic*",
+              "views": 0,
+              "viewed": false,
+              "article_type": "blog",
+              "created_at": "2021-09-08T10:59:35.595Z",
+              "updated_at": "2021-09-08T10:59:35.595Z",
+              "image": {
+                "url": "http://localhost:3000/uploads/article/1/img.png",
+                "thumbnail": {
+                  "url": "http://localhost:3000/uploads/article/1/thumbnail_img.png"
+                },
+                "medium": {
+                  "url": "http://localhost:3000/uploads/article/1/medium_img.png"
+                }
+              },
+              "attachments": [
+                {
+                  "id": 92,
+                  "position": 1,
+                  "url": "http://localhost:3000/uploads/attachment/92/img.jpg",
+                  "created_at": "2021-09-08T11:07:48.156Z",
+                  "updated_at": "2021-09-08T11:07:48.156Z"
+                }
+              ]
+            }
+          ],
+          "count": 1
+        }
+       type: 'json'
+     -
+       code: 401
+       response: var:access_denied_error
+       type: 'json'
+ -
+   title: 'Article details'
+   path: '/articles/:id'
+   method: 'get'
+   headers:
+     -
+       name: 'Session-Token'
+   example_responses:
+     -
+       code: 200
+       response: var:article_details
+       type: 'json'
+     -
+       code: 401
+       response: var:access_denied_error
+       type: 'json'
+     -
+       code: 404
+       response: var:article_not_found
+       type: 'json'
+ -
+   title: 'View article'
+   path: '/articles/:id/view'
+   method: 'post'
+   headers:
+     -
+       name: 'Session-Token'
+   example_responses:
+     -
+       code: 200
+       response: var:ok
+       type: 'json'
+     -
+       code: 401
+       response: var:access_denied_error
+       type: 'json'
+     -
+       code: 404
+       response: var:article_not_found
+       type: 'json'
+     -
+       code: 404
+       response: >
+        {
+          "errors": [
+            "Already viewed"
+          ]
+        }
+       type: 'json'

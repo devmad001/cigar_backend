@@ -1,0 +1,134 @@
+variables:
+  access_denied_error: >
+    {
+      "errors": ["Access Denied!"]
+    }
+  permissions_error: >
+    {
+      "errors": [
+        "You dont have enough permissions!"
+      ]
+    }
+  ok: >
+    {
+      "message": "ok"
+    }
+  session_and_user: >
+    {
+      "session_token": "ccbc10fe-2539-44a9-9a72-a9d3ee2e0ef8",
+      "current_user": {
+        "id": 1,
+        "email": "user@mail.com",
+        "phone_number": "+1234567890",
+        "full_name": "John Doe",
+        "state": null,
+        "city": null,
+        "address": null,
+        "newsletter": true,
+        "created_at": "2021-05-11T04:10:22.988Z",
+        "updated_at": "2021-05-11T04:10:22.988Z"
+      }
+    }
+  user: >
+    {
+      "current_user": {
+        "id": 1,
+        "email": "user@mail.com",
+        "phone_number": "+1234567890",
+        "full_name": "John Doe",
+        "state": null,
+        "city": null,
+        "address": null,
+        "newsletter": true,
+        "created_at": "2021-05-11T04:10:22.988Z",
+        "updated_at": "2021-05-11T04:10:22.988Z"
+      }
+    }
+  pages: >
+    {
+      "page_type": "privacy_policy",
+      "content": "<p><strong>Privacy Policy</strong></p>\r\n",
+      "created_at": "2020-10-08T10:29:07.595Z",
+      "updated_at": "2020-10-08T10:34:57.560Z"
+    }
+  sort_type: Default asc. [ asc | desc ]
+  default_per_page: Default 10
+  default_page: Default 1
+  example_datetime: '2019-11-25T10:36:44.403Z'
+  product_not_found: >
+    {
+      "errors": [
+        "Product not found"
+      ]
+    }
+  category_not_found: >
+    {
+      "errors": [
+        "Category not found"
+      ]
+    }
+  coupon_not_found: >
+    {
+      "errors": [
+        "Coupon not found"
+      ]
+    }
+  review_not_found: >
+    {
+      "errors": [
+        "Review not found"
+      ]
+    }
+  review_details: >
+    {
+      "id": 1,
+      "title": "Review",
+      "body": "Text",
+      "rating": 5,
+      "created_at": "2021-08-26T08:03:35.146Z",
+      "updated_at": "2021-08-26T08:03:35.146Z",
+      "user": {
+        "id": 1,
+        "full_name": "John Doe"
+      },
+      "product": {
+        "id": 48,
+        "title": "Midnight Blue blu® Device - Limited Edition",
+        "name": "blu™ Midnight Blue Vape Device | blu®"
+      }
+    }
+  article_not_found: >
+    {
+      "errors": [
+        "Article not found"
+      ]
+    }
+  article_details: >
+    {
+      "id": 1,
+      "title": "Article",
+      "body": "Test **bols** *italic*",
+      "views": 0,
+      "viewed": false,
+      "article_type": "blog",
+      "created_at": "2021-09-08T10:59:35.595Z",
+      "updated_at": "2021-09-08T10:59:35.595Z",
+      "image": {
+        "url": "http://localhost:3000/uploads/article/img.png",
+        "thumbnail": {
+          "url": "http://localhost:3000/uploads/article/1/thumbnail_img.png"
+        },
+        "medium": {
+          "url": "http://localhost:3000/uploads/article/1/medium_img.png"
+        }
+      },
+      "attachments": [
+        {
+          "id": 92,
+          "position": 1,
+          "url": "http://localhost:3000/uploads/attachment/92/img.jpg",
+          "created_at": "2021-09-08T11:07:48.156Z",
+          "updated_at": "2021-09-08T11:07:48.156Z"
+        }
+      ]
+    }

@@ -1,0 +1,33 @@
+name: 'Cigar Finder'
+host: <%= ENV['API_HOST'] %>
+api_prefix: '/api/v1'
+
+include!: variables
+
+menu_items:
+ -
+   include!: sessions
+ -
+   include!: users
+ -
+   include!: pages
+ -
+   include!: categories
+ -
+   include!: products
+ -
+   include!: reviews
+ -
+   include!: articles
+ -
+   include!: help
+ -
+   include!: ad_banners
+ -
+   include!: meta_tags
+ -
+   include!: brands
+ -
+   include!: statistic_actions
+ -
+   include!: coupons

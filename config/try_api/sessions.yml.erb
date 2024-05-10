@@ -1,0 +1,91 @@
+title: 'Sessions'
+methods:
+ -
+   title: 'Login'
+   path: '/sessions'
+   method: 'post'
+   parameters:
+     -
+       name: 'email'
+       type: 'string'
+       required: true
+     -
+       name: 'password'
+       type: 'string'
+       required: true
+   example_responses:
+     -
+       code: 200
+       response: var:session_and_user
+       type: 'json'
+     -
+       code: 401
+       response: >
+         {
+           "errors": [
+             "Wrong email number or password."
+           ]
+         }
+       type: 'json'
+ -
+   title: 'Social Login'
+   path: '/sessions/social_login'
+   method: 'post'
+   parameters:
+     -
+       name: 'social_type'
+       type: 'string'
+       description: '[ <%= User.social_types.keys.join ' | ' %> ]'
+       required: true
+     -
+       name: 'access_token'
+       type: 'string'
+       required: true
+   example_responses:
+     -
+       code: 200
+       response: var:session_and_user
+       type: 'json'
+     -
+       code: 422
+       response: >
+        {
+          "errors": [
+            "Wrong social type "
+          ]
+        }
+       type: 'json'
+     -
+       code: 422
+       response: >
+        {
+          "errors": [
+            "invalid_request Invalid Credentials"
+          ]
+        }
+       type: 'json'
+     -
+       code: 422
+       response: >
+        {
+          "errors": [
+            "Invalid Token"
+          ]
+        }
+       type: 'json'
+ -
+   title: 'Logout'
+   path: '/sessions/logout'
+   method: 'delete'
+   headers:
+     -
+       name: 'Session-Token'
+   example_responses:
+     -
+       code: 200
+       response: var:ok
+       type: 'json'
+     -
+       code: 401
+       response: var:access_denied_error
+       type: 'json'

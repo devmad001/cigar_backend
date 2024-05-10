@@ -1,0 +1,38 @@
+title: 'Statistic Actions'
+methods:
+  -
+    title: 'Create'
+    path: '/actions'
+    method: 'post'
+    parameters:
+      -
+        name: 'user_id'
+        type: 'string'
+        description: 'Authorization Users ID'
+      -
+        name: 'ip'
+        type: 'string'
+        description: 'Quests IP'
+      -
+        name: 'location'
+        type: 'string'
+        description: 'Quests location'
+      -
+        name: 'action_type'
+        type: 'string'
+        description: '[ <%= Action.action_types.keys.join(' | ') %> ]'
+      -
+        name: 'entity_type'
+        type: 'string'
+        description: 'Activity target (ex. product, category))'
+      -
+        name: 'entity_id'
+        type: 'string'
+        description: 'Activity target ID'
+    example_responses:
+      - code: 200
+        response: var:ok
+        type: 'json'
+      - code: 404
+        response: var:product_not_found
+        type: 'json'

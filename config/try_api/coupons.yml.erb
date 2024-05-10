@@ -1,0 +1,170 @@
+title: 'Coupons'
+methods:
+  -
+    title: 'Coupons list'
+    path: '/coupons'
+    method: 'get'
+    headers:
+      -
+        name: 'Session-Token'
+    parameters:
+      -
+        name: 'page'
+        type: 'integer'
+        description: var:default_page
+      -
+        name: 'per_page'
+        type: 'integer'
+        description: var:default_per_page
+      -
+        name: 'sort_column'
+        type: 'string'
+        description: 'Default name. [ name | description | coupon_id | code | resource_id | status | coupon_type | start_date | end_date | created_at | updated_at ]'
+      -
+        name: 'sort_type'
+        type: 'string'
+        description: 'Default asc. [ asc | desc ]'
+      -
+        name: 'name'
+        type: 'string'
+      -
+        name: 'description'
+        type: 'string'
+      -
+        name: 'coupon_id'
+        type: 'string'
+      -
+        name: 'code'
+        type: 'string'
+      -
+        name: 'resource_id'
+        type: 'integer'
+      -
+        name: 'status'
+        type: 'string'
+      -
+        name: 'coupon_type'
+        type: 'string'
+        description: 'Default: all. [ <%= Coupon.coupon_types.keys.join ' | ' %> ]'
+      -
+        name: 'start_date_from'
+        type: 'datetime'
+        description: var:example_datetime
+      -
+        name: 'start_date_to'
+        type: 'datetime'
+        description: var:example_datetime
+      -
+        name: 'end_date_from'
+        type: 'datetime'
+        description: var:example_datetime
+      -
+        name: 'end_date_to'
+        type: 'datetime'
+        description: var:example_datetime
+      -
+        name: 'created_at_from'
+        type: 'datetime'
+        description: var:example_datetime
+      -
+        name: 'created_at_to'
+        type: 'datetime'
+        description: var:example_datetime
+      -
+        name: 'updated_at_from'
+        type: 'datetime'
+        description: var:example_datetime
+      -
+        name: 'updated_at_to'
+        type: 'datetime'
+        description: var:example_datetime
+    example_responses:
+      -
+        code: 200
+        response: >
+          {
+            "coupons": [
+              {
+                "id": 2,
+                "name": "Affiliate Exclusive: Save 25% with code GEN2523 at JRCigars.com",
+                "description": "Affiliate Exclusive: Save 25% with code GEN2523 at JRCigars.com",
+                "start_date": "2023-02-07T00:00:00.000Z",
+                "end_date": null,
+                "resource_id": null,
+                "status": null,
+                "code": "GEN2523",
+                "exclusive": null,
+                "coupon_type": null,
+                "percentage_off": 25,
+                "dollar_off": 0,
+                "created_at": "2024-02-25T19:10:59.265Z",
+                "updated_at": "2024-02-25T19:10:59.265Z"
+              },
+              {
+                "id": 1,
+                "name": "New Affiliate Exclusive Code for JR Cigars! Use code JRSPECIAL25 for 25% OFF!",
+                "description": "New Affiliate Exclusive Code for JR Cigars! Use code JRSPECIAL25 for 25% OFF!",
+                "start_date": "2024-01-12T00:00:00.000Z",
+                "end_date": null,
+                "resource_id": null,
+                "status": null,
+                "code": "JRSPECIAL25",
+                "exclusive": null,
+                "coupon_type": null,
+                "percentage_off": 25,
+                "dollar_off": 0,
+                "created_at": "2024-02-25T19:10:59.234Z",
+                "updated_at": "2024-02-25T19:10:59.234Z"
+              },
+              {
+                "id": 3,
+                "name": "New Affiliate Exclusive Code for JR Cigars! Use code JRSPECIAL25 for 25% OFF!",
+                "description": "New Affiliate Exclusive Code for JR Cigars! Use code JRSPECIAL25 for 25% OFF!",
+                "start_date": "2023-02-07T00:00:00.000Z",
+                "end_date": null,
+                "resource_id": null,
+                "status": null,
+                "code": "FLEXOFF253",
+                "exclusive": null,
+                "coupon_type": null,
+                "percentage_off": 25,
+                "dollar_off": 0,
+                "created_at": "2024-02-25T19:10:59.269Z",
+                "updated_at": "2024-02-25T19:10:59.269Z"
+              }
+            ],
+            "count": 3
+          }
+        type: 'json'
+  -
+    title: 'Coupon details'
+    path: '/coupons/:id'
+    method: 'get'
+    headers:
+      -
+        name: 'Session-Token'
+    example_responses:
+      -
+        code: 200
+        response: >
+          {
+            "id": 1,
+            "name": "New Affiliate Exclusive Code for JR Cigars! Use code JRSPECIAL25 for 25% OFF!",
+            "description": "New Affiliate Exclusive Code for JR Cigars! Use code JRSPECIAL25 for 25% OFF!",
+            "start_date": "2024-01-12T00:00:00.000Z",
+            "end_date": null,
+            "resource_id": null,
+            "status": null,
+            "code": "JRSPECIAL25",
+            "exclusive": null,
+            "coupon_type": null,
+            "percentage_off": 25,
+            "dollar_off": 0,
+            "created_at": "2024-02-25T19:10:59.234Z",
+            "updated_at": "2024-02-25T19:10:59.234Z"
+          }
+        type: 'json'
+      -
+        code: 404
+        response: var:coupon_not_found
+        type: 'json'

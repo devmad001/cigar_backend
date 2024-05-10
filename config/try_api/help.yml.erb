@@ -1,0 +1,98 @@
+title: 'Help'
+methods:
+  -
+    title: 'Answers list'
+    path: '/help/answers'
+    method: 'get'
+    parameters:
+      -
+        name: 'page'
+        type: 'integer'
+        description: var:default_page
+      -
+        name: 'per_page'
+        type: 'integer'
+        description: var:default_per_page
+      -
+        name: 'sort_column'
+        type: 'string'
+        description: 'Default name. [ title | created_at | updated_at ]'
+      -
+        name: 'title'
+        type: 'string'
+      -
+        name: 'body'
+        type: 'string'
+      -
+        name: 'created_at_from'
+        type: 'datetime'
+        description: var:example_datetime
+      -
+        name: 'created_at_to'
+        type: 'datetime'
+        description: var:example_datetime
+      -
+        name: 'updated_at_from'
+        type: 'datetime'
+        description: var:example_datetime
+      -
+        name: 'updated_at_to'
+        type: 'datetime'
+        description: var:example_datetime
+    example_responses:
+      -
+        code: 200
+        response: >
+          {
+            "answers": [
+              {
+                "id": 1,
+                "title": "Test question",
+                "body": "<p><strong><em>Test </em></strong><em>Answer </em>body</p>\r\n",
+                "created_at": "2021-09-09T12:06:04.774Z",
+                "updated_at": "2021-09-09T12:16:16.410Z"
+              }
+            ],
+            "count": 1
+          }
+        type: 'json'
+  -
+    title: 'Create question'
+    path: '/help/contact'
+    method: 'post'
+    headers:
+      -
+        name: 'Session-Token'
+    parameters:
+      -
+        name: 'full_name'
+        type: 'string'
+      -
+        name: 'email'
+        type: 'string'
+      -
+        name: 'body'
+        type: 'text'
+    example_responses:
+      -
+        code: 200
+        response: var:ok
+        type: 'json'
+      -
+        code: 422
+        response: >
+          {
+            "errors": [
+              "Email can't be blank",
+              "Full name can't be blank"
+            ]
+          }
+        type: 'json'
+        response: >
+          {
+            "errors": [
+              "The email is incorrect. Please, make sure you entered correct data",
+              "Full name is too short (minimum is 6 characters)"
+            ]
+          }
+        type: 'json'

@@ -1,0 +1,11 @@
+title: 'Meta Tags'
+methods:
+  -
+    title: 'Get Meta tags for page'
+    path: '/get_meta'
+    method: 'get'
+    parameters:
+      -
+        name: 'page_type'
+        type: 'string'
+        description: '[ <%= MetaTag.page_types.keys.join(' | ') %> ]'

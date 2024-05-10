@@ -1,0 +1,11 @@
+title: 'Ad Banners'
+methods:
+  -
+    title: 'Get Banner'
+    path: '/get_banner'
+    method: 'get'
+    parameters:
+      -
+        name: 'ad_type'
+        type: 'string'
+        description: '[ <%= AdBanner.ad_types.keys.join(' | ') %> ]'

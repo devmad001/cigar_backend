@@ -1,0 +1,23 @@
+# == Schema Information
+#
+# Table name: actions
+#
+#  id          :bigint           not null, primary key
+#  action_type :integer
+#  guest_id    :bigint
+#  entity_type :string
+#  entity_id   :bigint
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  description :text
+#
+
+one:
+  action_type: 1
+  guest: one
+  entity: one
+
+two:
+  action_type: 1
+  guest: two
+  entity: two

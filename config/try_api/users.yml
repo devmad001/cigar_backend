@@ -1,0 +1,380 @@
+title: 'Users'
+methods:
+ -
+   title: 'Registration'
+   path: '/users'
+   method: 'post'
+   parameters:
+     -
+       name: 'email'
+       type: 'string'
+       required: true
+     -
+       name: 'phone_number'
+       type: 'string'
+       required: true
+     -
+       name: 'full_name'
+       type: 'string'
+       required: true
+     -
+       name: 'password'
+       type: 'string'
+       required: true
+     -
+       name: 'password_confirmation'
+       type: 'string'
+       required: true
+     -
+       name: 'state'
+       type: 'string'
+       required: true
+     -
+       name: 'city'
+       type: 'string'
+       required: true
+     -
+       name: 'address'
+       type: 'string'
+       required: true
+   example_responses:
+     -
+       code: 200
+       response: var:session_and_user
+       type: 'json'
+     -
+       code: 422
+       response: var:user_validation_errors
+       type: 'json'
+ -
+   title: 'Profile'
+   path: '/users/profile'
+   method: 'get'
+   headers:
+     -
+       name: 'Session-Token'
+   example_responses:
+     -
+       code: 200
+       response: var:user
+       type: 'json'
+     -
+       code: 401
+       response: var:access_denied_error
+       type: 'json'
+ -
+   title: 'Update Profile'
+   path: '/users/profile'
+   method: 'put'
+   headers:
+     -
+       name: 'Session-Token'
+   parameters:
+     -
+       name: 'image'
+       type: 'image'
+     -
+       name: 'remove_image'
+       type: 'boolean'
+       description: 'remove image if true'
+     -
+       name: 'full_name'
+       type: 'string'
+     -
+       name: 'email'
+       type: 'string'
+     -
+       name: 'phone_number'
+       type: 'string'
+     -
+       name: 'state'
+       type: 'string'
+       required: true
+     -
+       name: 'city'
+       type: 'string'
+       required: true
+     -
+       name: 'address'
+       type: 'string'
+       required: true
+   example_responses:
+     -
+       code: 200
+       response: var:user
+       type: 'json'
+     -
+       code: 401
+       response: var:access_denied_error
+       type: 'json'
+     -
+       code: 422
+       response: >
+         {
+           "errors": [
+             "Full name can't be blank",
+             "Full name is too short (minimum is 6 characters)",
+           ]
+         }
+       type: 'json'
+ -
+   title: 'Change password'
+   path: '/users/change_password'
+   method: 'post'
+   headers:
+     -
+       name: 'Session-Token'
+   parameters:
+     -
+       name: 'current_password'
+       type: 'string'
+       required: true
+     -
+       name: 'password'
+       type: 'string'
+       required: true
+     -
+       name: 'password_confirmation'
+       type: 'string'
+       required: true
+   example_responses:
+     -
+       code: 200
+       response: var:ok
+       type: 'json'
+     -
+       code: 401
+       response: var:access_denied_error
+       type: 'json'
+     -
+       code: 422
+       response: >
+        {
+          "errors": [
+            "Incorrect current password"
+          ]
+        }
+       type: 'json'
+     -
+       code: 422
+       response: >
+        {
+          "errors": [
+            "Password can't be blank"
+          ]
+        }
+       type: 'json'
+     -
+       code: 422
+       response: >
+        {
+          "errors": [
+            "Password is too short (minimum is 6 characters)",
+            "Password confirmation can't be blank"
+          ]
+        }
+       type: 'json'
+ -
+   title: 'Change email'
+   path: '/users/change_email'
+   method: 'post'
+   headers:
+     -
+       name: 'Session-Token'
+   parameters:
+     -
+       name: 'password'
+       type: 'string'
+       required: true
+     -
+       name: 'email'
+       type: 'string'
+       required: true
+   example_responses:
+     -
+       code: 200
+       response: var:ok
+       type: 'json'
+     -
+       code: 401
+       response: var:access_denied_error
+       type: 'json'
+     -
+       code: 422
+       response: >
+        {
+          "errors": [
+            "Incorrect password"
+          ]
+        }
+       type: 'json'
+     -
+       code: 422
+       response: >
+        {
+          "errors": [
+            "The email is incorrect. Please, make sure you entered correct data"
+          ]
+        }
+       type: 'json'
+ -
+   title: 'Change Phone Number'
+   path: '/users/change_phone_number'
+   method: 'post'
+   headers:
+     -
+       name: 'Session-Token'
+   parameters:
+     -
+       name: 'password'
+       type: 'string'
+       required: true
+     -
+       name: 'phone_number'
+       type: 'string'
+       required: true
+     -
+       name: 'code'
+       type: 'string'
+       required: true
+   example_responses:
+     -
+       code: 200
+       response: var:ok
+       type: 'json'
+     -
+       code: 401
+       response: var:access_denied_error
+       type: 'json'
+     -
+       code: 422
+       response: >
+        {
+          "errors": [
+            "Incorrect password"
+          ]
+        }
+       type: 'json'
+     -
+       code: 422
+       response: >
+        {
+          "errors": [
+            "Phone number can't be blank",
+            "Wrong confirmation code"
+          ]
+        }
+       type: 'json'
+ -
+   title: 'Forgot password'
+   path: '/users/forgot_password'
+   method: 'post'
+   parameters:
+     -
+       name: 'email'
+       type: 'string'
+       required: true
+   example_responses:
+     -
+       code: 200
+       response: var:ok
+       type: 'json'
+     -
+       code: 401
+       response: >
+        {
+          "errors": [
+            "Wrong email"
+          ]
+        }
+       type: 'json'
+ -
+   title: 'Reset password'
+   path: '/users/reset_password'
+   method: 'post'
+   parameters:
+     -
+       name: 'token'
+       type: 'string'
+       required: true
+     -
+       name: 'password'
+       type: 'string'
+       required: true
+     -
+       name: 'password_confirmation'
+       type: 'string'
+       required: true
+   example_responses:
+     -
+       code: 200
+       response: var:ok
+       type: 'json'
+     -
+       code: 401
+       response: >
+        {
+          "errors": [
+            "Wrong email"
+          ]
+        }
+       type: 'json'
+ -
+   title: 'Subscribe to Newsletter'
+   path: '/users/newsletter'
+   method: 'post'
+   headers:
+     -
+       name: 'Session-Token'
+   parameters:
+     -
+       name: 'email'
+       type: 'string'
+   example_responses:
+     -
+       code: 200
+       response: var:ok
+       type: 'json'
+     -
+       code: 422
+       response: >
+        {
+          "errors": [
+            "Email can't be blank"
+          ]
+        }
+       type: 'json'
+     -
+       code: 422
+       response: >
+        {
+          "errors": [
+            "The email is incorrect. Please, make sure you entered correct data"
+          ]
+        }
+       type: 'json'
+     -
+       code: 422
+       response: >
+        {
+          "errors": [
+            "This email address is already subscribed."
+          ]
+        }
+       type: 'json'
+ -
+   title: 'Delete Account'
+   path: '/users/profile'
+   method: 'delete'
+   headers:
+     -
+       name: 'Session-Token'
+   example_responses:
+     -
+       code: 200
+       response: var:ok
+       type: 'json'
+     -
+       code: 401
+       response: var:access_denied_error
+       type: 'json'

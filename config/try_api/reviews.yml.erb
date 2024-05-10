@@ -1,0 +1,211 @@
+title: 'Reviews'
+methods:
+  -
+    title: 'Reviews list'
+    path: '/reviews'
+    method: 'get'
+    headers:
+      -
+        name: 'Session-Token'
+    parameters:
+      -
+        name: 'page'
+        type: 'integer'
+        description: var:default_page
+      -
+        name: 'per_page'
+        type: 'integer'
+        description: var:default_per_page
+      -
+        name: 'sort_column'
+        type: 'string'
+        description: 'Default title. [ title | body | product_id | user_id | created_at | updated_at ]'
+      -
+        name: 'sort_type'
+        type: 'string'
+        description: var:sort_type
+      -
+        name: 'title'
+        type: 'string'
+      -
+        name: 'body'
+        type: 'string'
+      -
+        name: 'user_id'
+        type: 'integer'
+      -
+        name: 'product_id'
+        type: 'integer'
+      -
+        name: 'created_at_from'
+        type: 'datetime'
+        description: var:example_datetime
+      -
+        name: 'created_at_to'
+        type: 'datetime'
+        description: var:example_datetime
+      -
+        name: 'updated_at_from'
+        type: 'datetime'
+        description: var:example_datetime
+      -
+        name: 'updated_at_to'
+        type: 'datetime'
+        description: var:example_datetime
+    example_responses:
+      -
+        code: 200
+        response: >
+          {
+            "reviews": [
+              {
+                "id": 1,
+                "title": "Review",
+                "body": "Text",
+                "rating": 5,
+                "created_at": "2021-08-26T08:03:35.146Z",
+                "updated_at": "2021-08-26T08:03:35.146Z",
+                "user": {
+                  "id": 1,
+                  "full_name": "John Doe"
+                },
+                "product": {
+                  "id": 48,
+                  "title": "Midnight Blue blu® Device - Limited Edition",
+                  "name": "blu™ Midnight Blue Vape Device | blu®"
+                }
+              }
+            ],
+            "count": 1
+          }
+        type: 'json'
+  -
+    title: 'Review details'
+    path: '/reviews/:id'
+    method: 'get'
+    headers:
+      -
+        name: 'Session-Token'
+    example_responses:
+      -
+        code: 200
+        response: var:review_details
+        type: 'json'
+      -
+        code: 404
+        response: var:review_not_found
+        type: 'json'
+
+  -
+    title: 'Create Review'
+    path: '/reviews'
+    method: 'post'
+    headers:
+      -
+        name: 'Session-Token'
+    parameters:
+      -
+        name: 'title'
+        type: 'string'
+        required: true
+      -
+        name: 'body'
+        type: 'text'
+        required: true
+      -
+        name: 'rating'
+        type: 'integer'
+        required: true
+        description: '0..5'
+      -
+        name: 'product_id'
+        type: 'integer'
+        required: true
+    example_responses:
+      -
+        code: 200
+        response: var:review_details
+        type: 'json'
+      -
+        code: 401
+        response: var:access_denied_error
+        type: 'json'
+      -
+        code: 404
+        response: var:review_not_found
+        type: 'json'
+      -
+        code: 422
+        response: >
+          {
+            "errors": [
+              "Body can't be blank",
+              "Product must exist",
+              "Rating can't be blank",
+              "Title can't be blank"
+            ]
+          }
+        type: 'json'
+  -
+    title: 'Update Review'
+    path: '/reviews/:id'
+    method: 'put'
+    headers:
+      -
+        name: 'Session-Token'
+    parameters:
+      -
+        name: 'title'
+        type: 'string'
+      -
+        name: 'body'
+        type: 'text'
+      -
+        name: 'rating'
+        type: 'integer'
+        description: '0..5'
+      -
+        name: 'product_id'
+        type: 'integer'
+    example_responses:
+      -
+        code: 200
+        response: var:review_details
+        type: 'json'
+      -
+        code: 401
+        response: var:access_denied_error
+        type: 'json'
+      -
+        code: 404
+        response: var:review_not_found
+        type: 'json'
+      -
+        code: 422
+        response: >
+          {
+            "errors": [
+              "Rating must be less than or equal to 5"
+            ]
+          }
+        type: 'json'
+  -
+    title: 'Delete Review'
+    path: '/reviews/:id'
+    method: 'delete'
+    headers:
+      -
+        name: 'Session-Token'
+    example_responses:
+      -
+        code: 200
+        response: var:ok
+        type: 'json'
+      -
+        code: 401
+        response: var:access_denied_error
+        type: 'json'
+      -
+        code: 404
+        response: var:review_not_found
+        type: 'json'

@@ -1,0 +1,746 @@
+title: 'Products'
+methods:
+  -
+    title: 'Products list'
+    path: '/products'
+    method: 'get'
+    headers:
+      -
+        name: 'Session-Token'
+    parameters:
+      -
+        name: 'page'
+        type: 'integer'
+        description: var:default_page
+      -
+        name: 'per_page'
+        type: 'integer'
+        description: var:default_per_page
+      -
+        name: 'sort_column'
+        type: 'string'
+        description: 'Default name. [ name | title | category_id | purchases | purchased_at | viewed_at | favorite_at | created_at | updated_at | random ]'
+      -
+        name: 'sort_type'
+        type: 'string'
+        description: var:sort_type
+      -
+        name: 'title'
+        type: 'string'
+      -
+        name: 'q'
+        type: 'string'
+      -
+        name: 'description'
+        type: 'string'
+      -
+        name: 'category_id'
+        type: 'string'
+      -
+        name: 'price_from'
+        type: 'integer'
+      -
+        name: 'price_to'
+        type: 'integer'
+      -
+        name: 'brand'
+        type: 'string'
+      -
+        name: 'shape'
+        type: 'string'
+      -
+        name: 'type'
+        type: 'string'
+      -
+        name: 'seller'
+        type: 'string'
+      -
+        name: 'origin'
+        type: 'string'
+      -
+        name: 'country'
+        type: 'string'
+      -
+        name: 'strength'
+        type: 'string'
+      -
+        name: 'wrapper'
+        type: 'string'
+      -
+        name: 'accessories_type'
+        type: 'string'
+      -
+        name: 'length_from'
+        type: 'integer'
+      -
+        name: 'length_to'
+        type: 'integer'
+      -
+        name: 'ring_from'
+        type: 'integer'
+      -
+        name: 'ring_to'
+        type: 'integer'
+      -
+        name: 'rating'
+        type: 'string'
+      -
+        name: 'best_sellers'
+        type: 'boolean'
+        description: 'true => all purchased products, false => other products, NULL => all products'
+      -
+        name: 'purchased'
+        type: 'boolean'
+        description: 'true => purchased products, false => other products, NULL => all products'
+      -
+        name: 'viewed'
+        type: 'boolean'
+        description: 'true => viewed products, false => other products, NULL => all products'
+      -
+        name: 'favorite'
+        type: 'boolean'
+        description: 'true => favorite products, false => other products, NULL => all products'
+      -
+        name: 'hot_sale'
+        type: 'boolean'
+        description: 'true => hot sale, false => other products, NULL => all products'
+      -
+        name: 'daily_deals'
+        type: 'boolean'
+        description: 'true => daily deals, false => other products, NULL => all products'
+      -
+        name: 'recommendations'
+        type: 'boolean'
+        description: 'true => recommended products'
+    example_responses:
+      -
+        code: 200
+        response: >
+          {
+            "products": [
+              {
+                "id": 49,
+                "name": null,
+                "title": "Forest Green blu® Device - Limited Edition",
+                "description": "Vaping made easy.\n\nblu® Device makes vaping easier with its 1-click pod system & slick\ndesign made to rest comfortably in your hand and mouth.\nNow also available in [Graphite Black](https://www.blu.com/en/US/e-cigs/myblu-device-graphite-black).\n\n__Device details__\n\nEquipped with micro-USB charger, our long-lasting battery ensures that\none charge gets you through the day. The compact size of the device (4.25in x 0.71in) ensures your blu® device is ready to go for the ride.\n\n__Flavor and nicotine options__\n\nFind your taste with our range of flavors and nicotine strengths – [Gold\nLeaf](https://www.blu.com/en/US/flavors/myblu-liquidpods/blu-tobacco-ice), [Rich Tobacco](https://www.blu.com/en/US/flavors/myblu-liquidpods), [Menthol](https://www.blu.com/en/US/flavors/myblu-liquidpods/blu-menthol) & [Tobacco Ice](https://www.blu.com/en/US/flavors/myblu-liquidpods/blu-tobacco-ice), ranging from 1.2% to 4% in nicotine strength. Pods are sold separately.\n\n__Quality and standards__\n\nFor over 10 years, blu has remained committed to our products and liquids - that's why we have a dedicated team that continues to keep the quality of our products as high as possible. We make sure that everything from the device to pods is clinically tested to meet the highest safety standards.\n- Premium flavors blended and filled in the USA\n- Both pods & devices are packaged in the USA",
+                "category_id": 3,
+                "brand_id": null,
+                "link": "https://www.blu.com/en/US/e-cigs/blu-device-green-us",
+                "click_link": null,
+                "created_at": "2021-08-16T14:12:37.920Z",
+                "updated_at": "2021-08-16T14:12:37.920Z",
+                "views": 24,
+                "price": 999,
+                "old_price": 0,
+                "rating": null,
+                "specifications": {
+                  "key": "blu-device-green-us",
+                  "slug": "blu-device-green",
+                  "productType": "device",
+                  "flavorSystemType": "bluLiquidpod",
+                  "variantDiscriminator": "discriminatorText"
+                },
+                "seller": "Blu",
+                "purchased_at": "2021-08-16T09:59:19.98285",
+                "favorite": false,
+                "image_url": "http://localhost:3000/uploads/attachment/5/Green-Device-Pack_Pr-UV5fpCWt.jpg",
+                "category": {
+                  "id": 3,
+                  "title": "E-Cigarettes",
+                  "description": null,
+                  "category_id": null,
+                  "created_at": "2021-08-16T09:59:19.98285",
+                  "updated_at": "2021-08-16T09:59:19.98285"
+                }
+              }
+            ],
+            "count": 5
+          }
+        type: 'json'
+  -
+    title: 'Search Results'
+    path: '/products/search_results'
+    method: 'get'
+    headers:
+      -
+        name: 'Session-Token'
+    parameters:
+      -
+        name: 'sort_column'
+        type: 'string'
+        description: 'Default name. [ price | purchases | created_at ]'
+      -
+        name: 'sort_type'
+        type: 'string'
+        description: var:sort_type
+      -
+        name: 'title'
+        type: 'string'
+      -
+        name: 'id'
+        type: 'string'
+      -
+        name: 'price_from'
+        type: 'integer'
+      -
+        name: 'price_to'
+        type: 'integer'
+      -
+        name: 'seller'
+        type: 'string'
+      -
+        name: 'rating'
+        type: 'string'
+    example_responses:
+      -
+        code: 200
+        response: >
+          {
+            "products": [
+              {
+                "id": 49,
+                "name": null,
+                "title": "Forest Green blu® Device - Limited Edition",
+                "description": "Vaping made easy.\n\nblu® Device makes vaping easier with its 1-click pod system & slick\ndesign made to rest comfortably in your hand and mouth.\nNow also available in [Graphite Black](https://www.blu.com/en/US/e-cigs/myblu-device-graphite-black).\n\n__Device details__\n\nEquipped with micro-USB charger, our long-lasting battery ensures that\none charge gets you through the day. The compact size of the device (4.25in x 0.71in) ensures your blu® device is ready to go for the ride.\n\n__Flavor and nicotine options__\n\nFind your taste with our range of flavors and nicotine strengths – [Gold\nLeaf](https://www.blu.com/en/US/flavors/myblu-liquidpods/blu-tobacco-ice), [Rich Tobacco](https://www.blu.com/en/US/flavors/myblu-liquidpods), [Menthol](https://www.blu.com/en/US/flavors/myblu-liquidpods/blu-menthol) & [Tobacco Ice](https://www.blu.com/en/US/flavors/myblu-liquidpods/blu-tobacco-ice), ranging from 1.2% to 4% in nicotine strength. Pods are sold separately.\n\n__Quality and standards__\n\nFor over 10 years, blu has remained committed to our products and liquids - that's why we have a dedicated team that continues to keep the quality of our products as high as possible. We make sure that everything from the device to pods is clinically tested to meet the highest safety standards.\n- Premium flavors blended and filled in the USA\n- Both pods & devices are packaged in the USA",
+                "category_id": 3,
+                "brand_id": null,
+                "link": "https://www.blu.com/en/US/e-cigs/blu-device-green-us",
+                "click_link": null,
+                "created_at": "2021-08-16T14:12:37.920Z",
+                "updated_at": "2021-08-16T14:12:37.920Z",
+                "views": 24,
+                "price": 999,
+                "old_price": 0,
+                "rating": null,
+                "specifications": {
+                  "key": "blu-device-green-us",
+                  "slug": "blu-device-green",
+                  "productType": "device",
+                  "flavorSystemType": "bluLiquidpod",
+                  "variantDiscriminator": "discriminatorText"
+                },
+                "seller": "Blu",
+                "purchased_at": "2021-08-16T09:59:19.98285",
+                "favorite": false,
+                "image_url": "http://localhost:3000/uploads/attachment/5/Green-Device-Pack_Pr-UV5fpCWt.jpg",
+                "category": {
+                  "id": 3,
+                  "title": "E-Cigarettes",
+                  "description": null,
+                  "category_id": null,
+                  "created_at": "2021-08-16T09:59:19.98285",
+                  "updated_at": "2021-08-16T09:59:19.98285"
+                }
+              }
+            ],
+            "count": 5
+          }
+        type: 'json'
+  -
+    title: 'Product details'
+    path: '/products/:id'
+    method: 'get'
+    headers:
+      -
+        name: 'Session-Token'
+    example_responses:
+      -
+        code: 200
+        response: >
+          {
+            "id": 49,
+            "name": null,
+            "title": "Forest Green blu® Device - Limited Edition",
+            "description": "Vaping made easy.\n\nblu® Device makes vaping easier with its 1-click pod system & slick\ndesign made to rest comfortably in your hand and mouth.\nNow also available in [Graphite Black](https://www.blu.com/en/US/e-cigs/myblu-device-graphite-black).\n\n__Device details__\n\nEquipped with micro-USB charger, our long-lasting battery ensures that\none charge gets you through the day. The compact size of the device (4.25in x 0.71in) ensures your blu® device is ready to go for the ride.\n\n__Flavor and nicotine options__\n\nFind your taste with our range of flavors and nicotine strengths – [Gold\nLeaf](https://www.blu.com/en/US/flavors/myblu-liquidpods/blu-tobacco-ice), [Rich Tobacco](https://www.blu.com/en/US/flavors/myblu-liquidpods), [Menthol](https://www.blu.com/en/US/flavors/myblu-liquidpods/blu-menthol) & [Tobacco Ice](https://www.blu.com/en/US/flavors/myblu-liquidpods/blu-tobacco-ice), ranging from 1.2% to 4% in nicotine strength. Pods are sold separately.\n\n__Quality and standards__\n\nFor over 10 years, blu has remained committed to our products and liquids - that's why we have a dedicated team that continues to keep the quality of our products as high as possible. We make sure that everything from the device to pods is clinically tested to meet the highest safety standards.\n- Premium flavors blended and filled in the USA\n- Both pods & devices are packaged in the USA",
+            "category_id": 3,
+            "brand_id": null,
+            "link": "https://www.blu.com/en/US/e-cigs/blu-device-green-us",
+            "click_link": null,
+            "created_at": "2021-08-16T14:12:37.920Z",
+            "updated_at": "2021-08-16T14:12:37.920Z",
+            "views": 24,
+            "price": 999,
+            "old_price": 0,
+            "rating": null,
+            "specifications": {
+              "key": "blu-device-green-us",
+              "slug": "blu-device-green",
+              "productType": "device",
+              "flavorSystemType": "bluLiquidpod",
+              "variantDiscriminator": "discriminatorText"
+            },
+            "seller": "Blu",
+            "purchased_at": "2021-08-16T09:59:19.98285",
+            "favorite": false,
+            "category": {
+              "id": 3,
+              "title": "E-Cigarettes",
+              "description": null,
+              "category_id": null,
+              "created_at": "2021-08-16T09:59:19.98285",
+              "updated_at": "2021-08-16T09:59:19.98285"
+            },
+            "attachments": [
+              {
+                "url": "http://localhost:3000/uploads/attachment/5/Green-Device-Pack_Pr-UV5fpCWt.jpg",
+                "thumbnail": {
+                  "url": "http://localhost:3000/uploads/attachment/5/thumbnail_Green-Device-Pack_Pr-UV5fpCWt.jpg"
+                }
+              },
+              {
+                "url": "http://localhost:3000/uploads/attachment/6/Green-Device_Product-eNoQ21o2.jpg",
+                "thumbnail": {
+                  "url": "http://localhost:3000/uploads/attachment/6/thumbnail_Green-Device_Product-eNoQ21o2.jpg"
+                }
+              },
+              {
+                "url": "http://localhost:3000/uploads/attachment/7/device-8f4aGLsM.JPG",
+                "thumbnail": {
+                  "url": "http://localhost:3000/uploads/attachment/7/thumbnail_device-8f4aGLsM.JPG"
+                }
+              },
+              {
+                "url": "http://localhost:3000/uploads/attachment/8/Product-img_Thumbnai-fnXVlak_.jpg",
+                "thumbnail": {
+                  "url": "http://localhost:3000/uploads/attachment/8/thumbnail_Product-img_Thumbnai-fnXVlak_.jpg"
+                }
+              }
+            ],
+            "reviews": [
+              {
+                "id": 82,
+                "title": null,
+                "body": "Absolutely the best e-juice I have ever tried and I have tried TONS. This is a must for ANYONE who vapes. It literally takes like blueberries in your mouth and it is oh so pleasant.",
+                "rating": 5,
+                "user_id": null,
+                "product_id": 4999,
+                "created_at": "2021-09-07T10:05:16.141182",
+                "updated_at": "2021-09-07T10:05:16.141182",
+                "reviewer_name": "Justin Rhoades",
+                "review_date": "2017-06-06T05:45:09"
+              },
+              {
+                "id": 83,
+                "title": null,
+                "body": "I am new in vaping and had one bottle of another brand of blueberry. All I have to say to first timers is not to waste their time or money. Kind juice is amazing. You won’t regret it. This blueberry is just the right amount of sweet with no weird after taste. Also easier on the lungs. Great job Kind juice",
+                "rating": 5,
+                "user_id": null,
+                "product_id": 4999,
+                "created_at": "2021-09-07T10:05:16.143963",
+                "updated_at": "2021-09-07T10:05:16.143963",
+                "reviewer_name": "Carla Perez Torres",
+                "review_date": "2017-07-25T09:04:43"
+              }
+            ]
+          }
+        type: 'json'
+      -
+        code: 404
+        response: var:product_not_found
+        type: 'json'
+  -
+    title: 'Buy product'
+    path: '/products/:id/buy'
+    method: 'post'
+    headers:
+      -
+        name: 'Session-Token'
+    example_responses:
+      -
+        code: 200
+        response: var:ok
+        type: 'json'
+      -
+        code: 404
+        response: var:product_not_found
+        type: 'json'
+  -
+    title: 'Remove from order history'
+    path: '/products/:id/remove_purchase'
+    method: 'delete'
+    headers:
+      -
+        name: 'Session-Token'
+    example_responses:
+      -
+        code: 200
+        response: var:ok
+        type: 'json'
+      -
+        code: 404
+        response: var:product_not_found
+        type: 'json'
+  -
+    title: 'Save product as favorite'
+    path: '/products/:id/save'
+    method: 'post'
+    headers:
+      -
+        name: 'Session-Token'
+    example_responses:
+      -
+        code: 200
+        response: var:ok
+        type: 'json'
+      -
+        code: 404
+        response: var:product_not_found
+        type: 'json'
+  -
+    title: 'Remove product from favorite'
+    path: '/products/:id/remove'
+    method: 'delete'
+    headers:
+      -
+        name: 'Session-Token'
+    example_responses:
+      -
+        code: 200
+        response: var:ok
+        type: 'json'
+      -
+        code: 404
+        response: var:product_not_found
+        type: 'json'
+  -
+   title: 'Filters list'
+   path: '/products/filters'
+   method: 'get'
+   parameters:
+     -
+       name: 'category_id'
+       type: 'string'
+     -
+       name: 'price_from'
+       type: 'integer'
+     -
+       name: 'price_to'
+       type: 'integer'
+     -
+       name: 'q'
+       type: 'string'
+     -
+       name: 'brand'
+       type: 'string'
+     -
+       name: 'seller'
+       type: 'string'
+     -
+       name: 'origin'
+       type: 'string'
+     -
+       name: 'country'
+       type: 'string'
+     -
+       name: 'strength'
+       type: 'string'
+     -
+       name: 'wrapper'
+       type: 'string'
+     -
+       name: 'accessories_type'
+       type: 'string'
+     -
+       name: 'length_from'
+       type: 'integer'
+     -
+       name: 'length_to'
+       type: 'integer'
+     -
+       name: 'ring_from'
+       type: 'integer'
+     -
+       name: 'ring_to'
+       type: 'integer'
+     -
+       name: 'rating'
+       type: 'string'
+     -
+       name: 'last_active'
+       type: 'string'
+     -
+       name: 'purchased'
+       type: 'boolean'
+       description: 'true => purchased products, false => other products, NULL => all products'
+     -
+       name: 'favorite'
+       type: 'boolean'
+       description: 'true => favorite products, false => other products, NULL => all products'
+     -
+       name: 'best_sellers'
+       type: 'boolean'
+   example_responses:
+     -
+       code: 200
+       response: >
+         {
+           "filters": {
+             "price": {
+               "type": "range",
+               "values": {
+                 "min": 785,
+                 "max": 15410
+               }
+               },
+               "brand": {
+                 "type": "array",
+                 "values": [
+                   {
+                     "name": "A.C. Petersen",
+                     "count": 1
+                   },
+                   {
+                     "name": "American Club",
+                     "count": 5
+                   },
+                   {
+                     "name": "Amphora",
+                     "count": 2
+                   },
+                   {
+                     "name": "Arrowhead Pipe Tobacco",
+                     "count": 3
+                   },
+                   {
+                     "name": "Backwoods",
+                     "count": 4
+                   },
+                   {
+                     "name": "Balkan Sasieni",
+                     "count": 1
+                   },
+                   {
+                     "name": "Bell's Three Nuns",
+                     "count": 1
+                   },
+                   {
+                     "name": "Borkum Riff",
+                     "count": 3
+                   },
+                   {
+                     "name": "Buckhorn",
+                     "count": 3
+                   },
+                   {
+                     "name": "CAO",
+                     "count": 4
+                   },
+                   {
+                     "name": "Capstan",
+                     "count": 2
+                   },
+                   {
+                     "name": "Captain Black",
+                     "count": 13
+                   },
+                   {
+                     "name": "Sparrow Pipe Tobacco",
+                     "count": 3
+                   },
+                   {
+                     "name": "Stokkebye 4th Generation",
+                     "count": 1
+                   }
+                 ]
+               },
+               "seller": {
+                 "type": "array",
+                 "values": [
+                   {
+                     "name": "JR Cigar",
+                     "count": 3
+                   },
+                   {
+                     "name": null,
+                     "count": 0
+                   }
+                 ]
+               },
+               "origin": {
+                 "type": "array",
+                 "values": [
+                   {
+                     "name": null,
+                     "count": 0
+                   },
+                   {
+                     "name": "United States",
+                     "count": 76
+                   },
+                   {
+                     "name": "Various",
+                     "count": 2
+                   },
+                   {
+                     "name": "Denmark",
+                     "count": 44
+                   }
+                 ]
+               },
+               "strength": {
+                 "type": "array",
+                 "values": [
+                   {
+                     "name": null,
+                     "count": 0
+                   },
+                   {
+                     "name": "Mellow - Medium",
+                     "count": 1
+                   },
+                   {
+                     "name": "Mellow",
+                     "count": 31
+                   },
+                   {
+                    "name": "Medium - Full",
+                     "count": 1
+                   }
+                 ]
+               },
+               "rating": {
+                 "type": "rating",
+                 "one": 0,
+                 "two": 0,
+                 three": 1,
+                 "four": 1,
+                 "five": 1
+               }
+             }
+           }
+         }
+       type: 'json'
+     -
+       code: 404
+       response: var:product_not_found
+       type: 'json'
+  -
+    title: 'Search suggesters list'
+    path: '/products/suggestions'
+    method: 'get'
+    parameters:
+      -
+        name: 'q'
+        type: 'string'
+  -
+    title: 'Shape options'
+    path: '/products/shape_options'
+    method: 'get'
+    headers:
+      -
+        name: 'Session-Token'
+    parameters:
+      -
+        name: 'title'
+        type: 'string'
+      -
+        name: 'q'
+        type: 'string'
+      -
+        name: 'description'
+        type: 'string'
+      -
+        name: 'category_id'
+        type: 'string'
+      -
+        name: 'price_from'
+        type: 'integer'
+      -
+        name: 'price_to'
+        type: 'integer'
+      -
+        name: 'brand'
+        type: 'string'
+      -
+        name: 'type'
+        type: 'string'
+      -
+        name: 'seller'
+        type: 'string'
+      -
+        name: 'origin'
+        type: 'string'
+      -
+        name: 'country'
+        type: 'string'
+      -
+        name: 'strength'
+        type: 'string'
+      -
+        name: 'wrapper'
+        type: 'string'
+      -
+        name: 'accessories_type'
+        type: 'string'
+      -
+        name: 'length_from'
+        type: 'integer'
+      -
+        name: 'length_to'
+        type: 'integer'
+      -
+        name: 'ring_from'
+        type: 'integer'
+      -
+        name: 'ring_to'
+        type: 'integer'
+      -
+        name: 'rating'
+        type: 'string'
+      -
+        name: 'best_sellers'
+        type: 'boolean'
+        description: 'true => all purchased products, false => other products, NULL => all products'
+      -
+        name: 'purchased'
+        type: 'boolean'
+        description: 'true => purchased products, false => other products, NULL => all products'
+      -
+        name: 'viewed'
+        type: 'boolean'
+        description: 'true => viewed products, false => other products, NULL => all products'
+      -
+        name: 'favorite'
+        type: 'boolean'
+        description: 'true => favorite products, false => other products, NULL => all products'
+      -
+        name: 'hot_sale'
+        type: 'boolean'
+        description: 'true => hot sale, false => other products, NULL => all products'
+      -
+        name: 'daily_deals'
+        type: 'boolean'
+        description: 'true => daily deals, false => other products, NULL => all products'
+      -
+        name: 'recommendations'
+        type: 'boolean'
+        description: 'true => recommended products'
+    example_responses:
+      -
+        code: 200
+        response: >
+          {
+            "options": [
+              {
+                "name": "Corona",
+                "count": 1
+              },
+              {
+                "name": "Gordo",
+                "count": 1
+              },
+              {
+                "name": "Lonsdale",
+                "count": 1
+              },
+              {
+                "name": "Robusto",
+                "count": 2
+              },
+              {
+                "name": "SHORT ROYALE",
+                "count": 1
+              }
+            ]
+          }
+        type: 'json'

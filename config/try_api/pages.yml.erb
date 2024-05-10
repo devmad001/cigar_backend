@@ -1,0 +1,25 @@
+title: 'Pages'
+methods:
+  -
+    title: 'Page'
+    description: >
+      page_type: [ <%= Page.page_types.keys.join ' | ' %> ]
+      <br>
+      <br>
+      Example link: <%= ENV['API_HOST'] %>/api/v1/pages/:page_type/page.html
+    path: '/pages/:page_type'
+    method: 'get'
+    example_responses:
+      -
+        code: 200
+        response: var:pages
+        type: 'json'
+      -
+        code: 404
+        response: >
+          {
+            "errors": [
+              "Page not found"
+            ]
+          }
+        type: 'json'

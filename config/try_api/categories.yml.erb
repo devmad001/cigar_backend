@@ -1,0 +1,100 @@
+title: 'Categories'
+methods:
+  -
+    title: 'Categories list'
+    path: '/categories'
+    method: 'get'
+    headers:
+      -
+        name: 'Session-Token'
+    parameters:
+      -
+        name: 'page'
+        type: 'integer'
+        description: var:default_page
+      -
+        name: 'per_page'
+        type: 'integer'
+        description: var:default_per_page
+      -
+        name: 'sort_column'
+        type: 'string'
+        description: 'Default name. [ title | category_id | created_at | updated_at ]'
+      -
+        name: 'sort_type'
+        type: 'string'
+        description: 'Default desc. [ asc | desc ]'
+      -
+        name: 'title'
+        type: 'string'
+      -
+        name: 'description'
+        type: 'string'
+      -
+        name: 'category_id'
+        type: 'string'
+    example_responses:
+      -
+        code: 200
+        response: >
+          {
+            "categories": [
+              {
+                "id": 2,
+                "title": "Category",
+                "description": "<p>Description</p>\r\n",
+                "category_id": null,
+                "products_count": 0,
+                "created_at": "2021-06-24T14:38:41.089Z",
+                "updated_at": "2021-06-24T14:38:41.089Z",
+                "image": {
+                  "url": "/uploads/category/2/image.jpeg",
+                  "thumbnail": {
+                    "url": "/uploads/category/2/thumbnail_image.jpeg"
+                  }
+                }
+              },
+              {
+                "id": 1,
+                "title": "Test",
+                "description": "",
+                "category_id": 2,
+                "products_count": 0,
+                "created_at": "2021-06-24T14:22:49.042Z",
+                "updated_at": "2021-06-24T14:42:21.049Z"
+              }
+            ],
+            "count": 2
+          }
+        type: 'json'
+  -
+    title: 'Category details'
+    path: '/categories/:id'
+    method: 'get'
+    headers:
+      -
+        name: 'Session-Token'
+    example_responses:
+      -
+        code: 200
+        response: >
+          {
+            "id": 2,
+            "title": "Category",
+            "description": "<p>Description</p>\r\n",
+            "category_id": null,
+            "products_count": 0,
+            "created_at": "2021-06-24T14:38:41.089Z",
+            "updated_at": "2021-06-24T14:38:41.089Z",
+            "image": {
+              "url": "/uploads/category/2/image.jpeg",
+              "thumbnail": {
+                "url": "/uploads/category/2/thumbnail_image.jpeg"
+              }
+            }
+          }
+        type: 'json'
+      -
+        code: 404
+        response: var:category_not_found
+        type: 'json'

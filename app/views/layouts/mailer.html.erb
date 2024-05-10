@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+        .container {
+            height: 100vh;
+            padding-top: 50px;
+            position:fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+        .wrapper {
+            width: 800px;
+            height: 420px;
+            margin: auto;
+            background-color: #fff;
+        }
+        .main-table tr td { padding: 0; }
+        #email-body {
+            width: 100%;
+            position: relative;
+        }
+
+        #email-body .background {
+            background-repeat: no-repeat;
+            background-position: 0% 0%;
+        }
+
+        #email-body .logo {
+            padding-top: 50px;
+            margin: auto;
+            text-align: center;
+            z-index: 1;
+        }
+        .body {
+            padding: 50px 0 0;
+        }
+
+        .body-header {
+            font-family: Tahoma, sans-serif;
+            font-weight: bold;
+            font-size: 40px;
+            line-height: 48px;
+            text-transform: uppercase;
+            color: #393939;
+            z-index: 1;
+        }
+        .body-text-2 {
+            font-family: Tahoma;
+            font-size: 18px;
+            line-height: 22px;
+            color: #352414;
+            margin-top: 50px;
+        }
+        .text-center {
+            text-align: center;
+        }
+
+        .button {
+            text-align: center;
+            background: #fff;
+        }
+
+        .btn {
+            width: 214px;
+            font-family: 'Tahoma', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 22px;
+            letter-spacing: 0.05em;
+            vertical-align: middle;
+            display: inline-block;
+            padding: 13px 17px;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 200px;
+            transition: background-color 0.2s, border-color 0.2s;
+            margin-top: 30px;
+            background-color: #6C3F13;
+            border: 1px solid #6C3F13;
+            color: #fff;
+        }
+
+        .footer {
+            padding-top: 75px;
+            height: 48px;
+            background: #fff;
+        }
+        .footer table {
+            background: #F2E2D3;
+            padding: 9px 0 9px 28%;
+            height: 48px;
+            margin-right: 0px;
+        }
+        .footer .icon {
+            padding: 0 10px
+        }
+        .footer .link {
+            padding: 0 20px;
+        }
+        .footer .link a {
+            text-decoration: none;
+            font-family: Tahoma, sans-serif;
+            font-size: 16px;
+            line-height: 19px;
+            text-align: right;
+            color: #B26D28;
+        }
+        .footer .link.first {
+            border-right: 1px solid #B26D28;
+        }
+        .footer .icon.first {
+            padding-left: 120px;
+        }
+        .footer .icon a {
+            width: 16px;
+            height: 16px;
+            display: block;
+        }
+        .footer .icon a img {
+            width: 100%;
+            height: 100%;
+        }
+
+        #logo {
+          display: inline-block;
+          width: 148px;
+        }
+
+        @media screen and (max-width: 960px){
+            .wrapper {
+                max-width: 95%;
+                background-position: center;
+            }
+            .footer table { padding-left: 15%; }
+            .footer .icon.first { padding-left: 90px; }
+        }
+        @media screen and (max-width: 600px){
+            .footer table { padding-left: 0; }
+            .footer .icon.first { padding-left: 40px; }
+            .footer .link,
+            .footer .icon { padding: 0 10px; }
+        }
+        @media screen and (max-width: 540px){
+            .footer .icon.first { padding-left: 10px; }
+        }
+        @media screen and (max-width: 340px){
+            .footer { height: 120px; }
+            .footer table {
+                width: 100%;
+                text-align:center;
+            }
+            .footer td { display: block; }
+            .footer td.link.first { border: none; }
+            .footer .link,
+            .footer .icon { padding: 0 5px; }
+            .footer .icon a { margin: auto; }
+        }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="wrapper">
+        <table align="center" cellspacing="0" style="width: 100%; background-repeat:no-repeat;" background="<%= ENV['API_HOST'] + '/images/bgimage.png' %>" class="main-table">
+          <tr>
+            <td>
+              <div id="email-body">
+                <div class="background">
+                  <div class="logo">
+                    <table align="center">
+                      <tbody border="0" cellspacing="0">
+                      <tr>
+                        <td>
+                          <img id="logo" src="<%=  ENV['API_HOST'] + '/images/mail-logo.png' %>" alt="logo">
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="body">
+                    <table style="text-align: center; width: 100%;">
+                      <tbody>
+                      <tr>
+                        <td >
+                          <%= yield %>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                    <div class="footer">
+                      <table border="0" cellspacing="0" style="width: 100%;">
+                        <tbody>
+                        <tr>
+                          <td class="first link">
+                            <a href="https://cigarfinder.com/terms-and-conditions">Terms & Conditions</a>
+                          </td>
+                          <td class="link">
+                            <a href="https://cigarfinder.com/privacy-policy">Privacy Policy</a>
+                          </td>
+                          <td class="icon facebook first">
+                            <a href="https://www.facebook.com/CigarFinder-101488222162301">
+                              <img src="<%= ENV['API_HOST'] + '/images/facebook_logo.png' %>" alt="facebook logo">
+                            </a>
+                          </td>
+                          <td class="icon twitter">
+                            <a href="https://twitter.com/FinderCigar">
+                              <img src="<%= ENV['API_HOST'] + '/images/twitter_logo.png' %>" alt="twitter logo">
+                            </a>
+                          </td>
+                          <td class="icon instagram">
+                            <a href="https://www.instagram.com/cigarfinder/">
+                              <img src="<%= ENV['API_HOST'] + '/images/instagram_logo.png' %>" alt="instagram logo">
+                            </a>
+                          </td>
+                          <td class="icon linkedin">
+                            <a href="">
+                              <img src="<%= ENV['API_HOST'] + '/images/linkedin_logo.png' %>" alt="linkedin logo">
+                            </a>
+                          </td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

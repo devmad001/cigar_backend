@@ -1,0 +1,21 @@
+# == Schema Information
+#
+# Table name: guests
+#
+#  id         :bigint           not null, primary key
+#  ip         :string
+#  location   :string
+#  user_id    :bigint
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+one:
+  ip: MyString
+  location: MyString
+  users: one
+
+two:
+  ip: MyString
+  location: MyString
+  users: two
