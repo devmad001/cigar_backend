@@ -33,6 +33,14 @@ class AscendParser
         end
         save_or_update_products!(@attributes)
       end
+      elsif main_attributes[:seller] == 'JRCigar.com'
+        if main_attributes[:category_name] != 'Accessories'
+          details = Ascend::JrCigarDetails.product(main_attributes[:link])
+          next if details.blank?
+          @attributes = @attributes.merge(details)
+        end
+        save_or_update_products!(@attributes)
+      end
     end
   end
 
